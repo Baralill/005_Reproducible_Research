@@ -151,9 +151,9 @@ print(paste("5 minute interval with the maximum number of steps", A[,1]))
 Imputing missing values
 ---
 
-- Calculating the number of days/intervals where there are missing values (coded as NA ) since the presence of missing days may introduce bias into some calculations or summaries of the data.
+#### Calculating the number of days/intervals where there are missing values (coded as NA ) since the presence of missing days may introduce bias into some calculations or summaries of the data.
 
-1. Calculating the total number of missing values in the dataset (i.e. the total number of rows with  NA s)
+- Calculating the total number of missing values in the dataset (i.e. the total number of rows with  NA s)
 
 
 ```r
@@ -164,9 +164,9 @@ print(paste("Number of rows with NAs = ", sum(is.na(activity$steps))))
 ## [1] "Number of rows with NAs =  2304"
 ```
 
-Imputing the missing values by using the daily Average Steps for the missing values.
+- Imputing the missing values by using the daily Average Steps for the missing values.
 
-2. Select Non-missing obs into a object - label as Measured
+- Select Non-missing obs into a object - label as Measured
 
 
 ```r
@@ -174,15 +174,14 @@ Tab2_Act <- filter(activity, !is.na(activity$steps))
 Tab2_Act$partition <- 'Measured'
 ```
 
-3. Select Missing obs into a object - label as Imputed
+- Select Missing obs into a object - label as Imputed
 
 
 ```r
 Tab2_NA <- filter(activity, is.na(activity$steps))
 Tab2_NA$partition <- 'Imputed'
 ```
-
-4. Merge the Interval Averages onto the NA dataset and create a new dataset with both the measured and imputed values
+- Merge the Interval Averages onto the NA dataset and create a new dataset with both the measured and imputed values
 
 
 ```r
@@ -192,7 +191,7 @@ Tab2_ordered$steps <- Tab2_ordered$Avg_Steps
 Tab3 <- rbind(Tab2_Act[,1:4], Tab2_ordered[,1:4])
 ```
 
-Check the rows after the merge and appending
+- Check the rows after the merge and appending
 
 
 ```r
@@ -203,8 +202,8 @@ print(paste("Number of rows = ",nrow(Tab3)))
 ## [1] "Number of rows =  17568"
 ```
 
-Calculating the Mean and Median of this dataset.
-Histogram of the Total Number of Steps each Day using the dataset including the Imputed values.
+- Calculating the Mean and Median of this dataset.
+- Histogram of the Total Number of Steps each Day using the dataset including the Imputed values.
 
 
 ```r
@@ -253,7 +252,7 @@ Analysis Results : Part 2 - Activity between weekdays and weekends.
 
 For this part of the analysis the dataset including the imputed values was used.
 
-1.  Including a new factor variable with two levels -- "weekday" and "weekend" which indicates whether a given date is a weekday or weekend day.
+- Including a new factor variable with two levels -- "weekday" and "weekend" which indicates whether a given date is a weekday or weekend day.
 
 ```r
 Tab3$weekdays <- weekdays(Tab3$date)
@@ -262,7 +261,7 @@ Tab3$TypeofDay <- Tab3[]
 Tab3$TypeofDay <- with(Tab3,ifelse(Tab3$weekdays %in% c("Saturday","Sunday"),"weekend","weekday"))
 ```
 
-2.  Comparing the average number of steps taken over week or weekend days by using a time series plot of the 5-minute interval (x-axis). 
+- Comparing the average number of steps taken over week or weekend days by using a time series plot of the 5-minute interval (x-axis). 
 
 
 ```r
@@ -275,6 +274,4 @@ xyplot(Avg_Steps ~ interval | TypeofDay, data = Tab5, layout = c(1,2), type = 'l
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
 
 * On average the weekdays has a higher step rate up to approx 9:30 after which there is a fairly constant average step rate up to 20:00. On weekends there is less variation in the average step rate for most of the day. 
-
-
 
