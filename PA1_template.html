@@ -417,8 +417,6 @@ print(paste(&quot;Mean: &quot; , mean(Tab4$total_step)))
 </ul>
 
 <pre><code class="r">Tab3$weekdays &lt;- weekdays(Tab3$date)
-Tab3$TypeofDay &lt;- Tab3[]
-
 Tab3$TypeofDay &lt;- with(Tab3,ifelse(Tab3$weekdays %in% c(&quot;Saturday&quot;,&quot;Sunday&quot;),&quot;weekend&quot;,&quot;weekday&quot;))
 </code></pre>
 

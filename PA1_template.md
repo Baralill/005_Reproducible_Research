@@ -256,8 +256,6 @@ For this part of the analysis the dataset including the imputed values was used.
 
 ```r
 Tab3$weekdays <- weekdays(Tab3$date)
-Tab3$TypeofDay <- Tab3[]
-
 Tab3$TypeofDay <- with(Tab3,ifelse(Tab3$weekdays %in% c("Saturday","Sunday"),"weekend","weekday"))
 ```
 
